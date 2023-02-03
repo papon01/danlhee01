@@ -1,16 +1,5 @@
 
-/*function test(value){
-    if(value == "tsws118"){
-        
-        let obj = {"video": {
-            "value": "<iframe title='YouTube video player' type=\"text/html\" width='640' height='390' src='https://www.youtube.com/embed/MpzIJ3SkgNw?autoplay='1' frameborder='0' allowFullScreen></iframe>"
-          }}
-        document.write(obj.video.value)
 
-    return true 
-    
-    }
-}*/  
     // days_between function var
 
 

@@ -51,6 +51,7 @@
         background-size: calc(100vw) calc(100vh);
 
     }
+
     
      
     button {
@@ -111,7 +112,199 @@
     
     </div>
 <footer>
-    <div><h5>DANLHEE V.2</h5></div>
+    <div class="text-center"><h5>DANLHEE V.2.1</h5></div>
 </footer>    
+
+    <script>
+        
+
+    // days_between function var
+
+
+function days_between(date1, date2) {
+
+    
+
+var date1 = new Date()
+var date2 = new Date(2020,07,27)
+
+// The number of milliseconds in one day
+var ONE_DAY = 1000 * 60 * 60 * 24
+
+// Convert both dates to milliseconds
+var date1_ms = date1.getTime()
+var date2_ms = date2.getTime()
+
+// Calculate the difference in milliseconds
+var difference_ms = Math.abs(date1_ms - date2_ms)
+
+// Convert back to days and return
+//return Math.round(difference_ms/ONE_DAY)
+
+
+var t = difference_ms
+var //cy = 365 * 24 * 60 * 60 * 1000,
+    //cm = 30 * 24 * 60 * 60 * 1000,
+    cd = 24 * 60 * 60 * 1000,
+    ch = 60 * 60 * 1000,
+    y = Math.floor((t / cd) / 365),
+    mo = Math.floor(
+        (
+            (t / cd) - Math.floor
+                (
+                (t / cd) / 365
+                )
+
+            * 365)
+         / 30 ),
+    dgu = Math.floor(t / cd) - (Math.floor((y) * 365) //year in day 
+        + Math.floor((mo)* 30 ))  //month in day      
+    d = Math.floor(t / cd),
+    h = Math.floor( (t - d * cd) / ch),
+    m = Math.round( (t - d * cd - h * ch) / 60000),
+    pad = function(n){ return n < 10 ? '0' + n : n; };
+if( m === 60 ){
+h++;
+m = 0;
+}
+if( h === 24 ){
+d++;
+h = 0;
+}
+
+var waitingtime = [ "   " + y + " Years ", mo + " Months ", dgu + " Day ", pad(h) + " Hours ", pad(m) + " Minutes "].join(' : ');
+return waitingtime;
+  
+}
+
+setInterval(WT, 1000);
+
+function WT() {
+  // Set the date we're counting down to
+  var countDownDate = new Date("2020-07-26 22:53:35").getTime();
+
+  // Get today's date and time
+  var now = new Date().getTime();
+    
+  // Find the distance between now and the count down date
+  var distance = Math.abs(now - countDownDate);
+    
+  // Time calculations for days, hours, minutes and seconds
+
+  var years = Math.floor(distance / (1000 * 60 * 60 * 24 * 365));
+  var months = Math.floor(((Math.floor(distance / (1000 * 60 * 60 * 24))) - //days in day -
+               (Math.floor(distance / (1000 * 60 * 60 * 24 * 365))* 365))  //years in day = months in day
+                / (30.42))                                                   //months in month 
+  
+  var days =  (Math.floor(distance / (1000 * 60 * 60 * 24))) -
+  
+            ((
+                (Math.floor((Math.floor(((Math.floor(distance / (1000 * 60 * 60 * 24))) - 
+               (Math.floor(distance / (1000 * 60 * 60 * 24 * 365))* 365))  
+                / (30.42))) * 30.42) )                                                 
+            ) 
+             
+            +
+
+            ((Math.floor(distance / (1000 * 60 * 60 * 24 * 365)))* 365 ) )  
+    
+  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    
+
+  var z =[ "   " + (Math.floor(distance / (1000 * 60 * 60 * 24 * 365))) + " Years ",(Math.floor(((Math.floor(distance / (1000 * 60 * 60 * 24))) - //days in day -
+  (Math.floor(distance / (1000 * 60 * 60 * 24 * 365))* 365))/ (30.42))) + " Months ",((Math.floor(distance / (1000 * 60 * 60 * 24))) -
+  
+   ((
+       (Math.floor((Math.floor(((Math.floor(distance / (1000 * 60 * 60 * 24))) - 
+      (Math.floor(distance / (1000 * 60 * 60 * 24 * 365))* 365))  
+       / (30.42))) * 30.42) )                                                 
+   ) 
+    
+   +
+
+   ((Math.floor(distance / (1000 * 60 * 60 * 24 * 365)))* 365 ) )) + " Days",  (Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))) + " Hours " , (Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))) + " Minutes " , (Math.floor((distance % (1000 * 60)) / 1000)) + " Seconds "].join(' | ');
+
+   console.log(WT())
+return z
+ 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Google OAuth2.0 authorization
+gapi.load("auth2", function() {
+    gapi.auth2.init({
+        client_id: "837943993291-o300pkv2ao8b5d2a8emoaji054euqcpv.apps.googleusercontent.com",
+        scope: "profile email https://www.googleapis.com/auth/youtube.force-ssl https://www.googleapis.com/auth/youtubepartner"
+    });
+});
+
+// Function to display user's profile information
+function display() {
+    gapi.auth2.getAuthInstance().signIn().then(function() {
+        var profile = gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile();
+        document.getElementById("dhcontentlabel").innerHTML = "User ID: " + profile.getId();
+        document.getElementById("dhcontent").innerHTML = "Full Name: " + profile.getName() + "<br>" + "Email: " + profile.getEmail();
+        document.getElementById("profilepiclabel").innerHTML = "Profile Picture";
+        document.getElementById("profilepic").innerHTML = "<img src='" + profile.getImageUrl() + "'>";
+        document.getElementById("congradmassage").innerHTML = "Login Successful!";
+    });
+}
+
+
+
+
+// Function to display the first 5 videos from a user's YouTube channel
+function showVideos() {
+    gapi.client.init({
+        'apiKey': 'AIzaSyBDEXKsKG1mjccq56dkXYGJwS5EwgosANQ',
+        'discoveryDocs': ['https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest'],
+    }).then(function() {
+        return gapi.client.youtube.channels.list({
+            "part": "snippet,contentDetails,statistics",
+            "mine": true
+        });
+    }).then(function(response) {
+        console.log(response);
+        var channel = response.result.items[0];
+        console.log(channel);
+        var channelId = channel.id;
+        console.log(channelId);
+
+        gapi.client.youtube.search.list({
+            "part": "snippet",
+            "channelId": channelId,
+            "maxResults": 5,
+            "type": "video"
+        }).then(function(response) {
+            console.log(response);
+            var videos = response.result.items;
+            var output = "";
+            for (var i in videos) {
+                var title = videos[i].snippet.title;
+                var videoId = videos[i].id.videoId;
+                output += "<li><a href='https://www.youtube.com/watch?v=" + videoId + "'>" + title + "</a></li>";
+            }
+            document.getElementById("dhsong").innerHTML = "<ol>" + output + "</ol>";
+        });
+    });
+}
+
+
+
+    </script>
 </body>
 </html>
