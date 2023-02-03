@@ -213,7 +213,7 @@ function WT() {
   var seconds = Math.floor((distance % (1000 * 60)) / 1000);
     
 
-  var z =[ "   " + (Math.floor(distance / (1000 * 60 * 60 * 24 * 365))) + " Years ",(Math.floor(((Math.floor(distance / (1000 * 60 * 60 * 24))) - //days in day -
+  /*var z =[ "   " + (Math.floor(distance / (1000 * 60 * 60 * 24 * 365))) + " Years ",(Math.floor(((Math.floor(distance / (1000 * 60 * 60 * 24))) - //days in day -
   (Math.floor(distance / (1000 * 60 * 60 * 24 * 365))* 365))/ (30.42))) + " Months ",((Math.floor(distance / (1000 * 60 * 60 * 24))) -
   
    ((
@@ -225,7 +225,9 @@ function WT() {
    +
 
    ((Math.floor(distance / (1000 * 60 * 60 * 24 * 365)))* 365 ) )) + " Days",  (Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))) + " Hours " , (Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))) + " Minutes " , (Math.floor((distance % (1000 * 60)) / 1000)) + " Seconds "].join(' | ');
+*/
 
+var z = [" "+ years + "Years"+" "+ months + "Months"+" "+ days + "days"+" "+ hours + "hours"+" "+ minutes + "minutes"+" "+ seconds + "seconds"+" "]
    console.log(WT())
 return z
  
