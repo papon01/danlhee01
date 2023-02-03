@@ -1,89 +1,117 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Welcome to Firebase Hosting</title>
+<head> 
+    <title>DANLHEE WEB SITE</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rajdhani">
 
-    <!-- update the version number as needed -->
-    <script defer src="/__/firebase/9.17.0/firebase-app-compat.js"></script>
-    <!-- include only the Firebase features as you need -->
-    <script defer src="/__/firebase/9.17.0/firebase-auth-compat.js"></script>
-    <script defer src="/__/firebase/9.17.0/firebase-database-compat.js"></script>
-    <script defer src="/__/firebase/9.17.0/firebase-firestore-compat.js"></script>
-    <script defer src="/__/firebase/9.17.0/firebase-functions-compat.js"></script>
-    <script defer src="/__/firebase/9.17.0/firebase-messaging-compat.js"></script>
-    <script defer src="/__/firebase/9.17.0/firebase-storage-compat.js"></script>
-    <script defer src="/__/firebase/9.17.0/firebase-analytics-compat.js"></script>
-    <script defer src="/__/firebase/9.17.0/firebase-remote-config-compat.js"></script>
-    <script defer src="/__/firebase/9.17.0/firebase-performance-compat.js"></script>
-    <!-- 
-      initialize the SDK after all desired features are loaded, set useEmulator to false
-      to avoid connecting the SDK to running emulators.
-    -->
-    <script defer src="/__/firebase/init.js?useEmulator=true"></script>
+        <!-- Link to Bootstrap CSS file -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
-    <style media="screen">
-      body { background: #ECEFF1; color: rgba(0,0,0,0.87); font-family: Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
-      #message { background: white; max-width: 360px; margin: 100px auto 16px; padding: 32px 24px; border-radius: 3px; }
-      #message h2 { color: #ffa100; font-weight: bold; font-size: 16px; margin: 0 0 8px; }
-      #message h1 { font-size: 22px; font-weight: 300; color: rgba(0,0,0,0.6); margin: 0 0 16px;}
-      #message p { line-height: 140%; margin: 16px 0 24px; font-size: 14px; }
-      #message a { display: block; text-align: center; background: #039be5; text-transform: uppercase; text-decoration: none; color: white; padding: 16px; border-radius: 4px; }
-      #message, #message a { box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); }
-      #load { color: rgba(0,0,0,0.4); text-align: center; font-size: 13px; }
-      @media (max-width: 600px) {
-        body, #message { margin-top: 0; background: white; box-shadow: none; }
-        body { border-top: 16px solid #ffa100; }
-      }
-    </style>
-  </head>
-  <body>
-    <div id="message">
-      <h2>Welcome</h2>
-      <h1>Firebase Hosting Setup Complete</h1>
-      <p>You're seeing this because you've successfully setup Firebase Hosting. Now it's time to go build something extraordinary!</p>
-      <a target="_blank" href="https://firebase.google.com/docs/hosting/">Open Hosting Documentation</a>
+        <!-- Link to Bootstrap JavaScript file (jQuery and Popper.js are also required) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+        <!-- Link to Google OAuth2.0 API file -->
+    <script src="https://apis.google.com/js/api.js"></script>
+
+        <!-- Link to Bootstrap 5 CSS file -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+        <!-- Optional link to Bootstrap 5 JavaScript file -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+
+
+
+<style>
+      
+    #container {
+        position: relative;
+    }
+
+    #background {
+        position: absolute;
+        top: 0%;
+        left: 0%;
+        bottom: 0%;
+        right: 0%;
+        z-index: -1;
+        overflow: auto;
+        height: 100%;
+        width: 100%;
+        font-size: 50%;
+        background-position: 0 0, center;
+        background-repeat: no-repeat;
+        background-position: 0px 0px;
+        background-attachment: fixed;
+        background-color: #020202;
+        -webkit-background-size: calc(100vw) calc(100vh);
+        -moz-background-size: calc(100vw) calc(100vh);
+        -o-background-size: calc(100vw) calc(100vh);
+        background-size: calc(100vw) calc(100vh);
+
+    }
+    
+     
+    button {
+        
+        padding: 5px 250px;
+        font-size: 15px;      
+    }
+
+
+    h1 {
+        font-weight: bold;
+        font-family: "Rajdhani", sans-serif;
+        color: rgb(29, 27, 27);
+        border-left: 1rem solid midnightblue;
+        background-color: rgba(243, 235, 235, 0.596);
+        padding: 10px;
+        font-size: 25px;
+
+    }
+    
+    h3 {
+        color: honeydew;
+        text-indent: 10px;
+
+    }
+
+    h5 {
+        color: honeydew;
+    }
+    
+    body {
+        overflow: scroll;      
+    }
+
+</style>
+
+
+    
+    
+</head>
+<body>
+ 
+        <iframe id="background" src="bg.html"></iframe>  
+
+    <div class="container text-center">
+    
+        
+        <h1 id='headM' name='headM'>   WELCOME TO DANLHEE WEBSITE  </h1>
+        <h5><div><alert id='congradmassage'></alert></div></h5>
+        <button id='dhclick' onclick='display()'>Login</button>
+        
+        <h3><label for='dhcontent' id='dhcontentlabel'></label></h3>
+        <div id='dhcontent'></div>
+        <h3><label for='profilepic' id='profilepiclabel' " ></label></h3>
+        <div id='profilepic' width=auto height="315" ></div>
+        <div id="dhsong"></div>
+        <script src="app.js"></script>
+    
     </div>
-    <p id="load">Firebase SDK Loading&hellip;</p>
-
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        const loadEl = document.querySelector('#load');
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-        // // The Firebase SDK is initialized and available here!
-        //
-        // firebase.auth().onAuthStateChanged(user => { });
-        // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
-        // firebase.firestore().doc('/foo/bar').get().then(() => { });
-        // firebase.functions().httpsCallable('yourFunction')().then(() => { });
-        // firebase.messaging().requestPermission().then(() => { });
-        // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
-        // firebase.analytics(); // call to activate
-        // firebase.analytics().logEvent('tutorial_completed');
-        // firebase.performance(); // call to activate
-        //
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-
-        try {
-          let app = firebase.app();
-          let features = [
-            'auth', 
-            'database', 
-            'firestore',
-            'functions',
-            'messaging', 
-            'storage', 
-            'analytics', 
-            'remoteConfig',
-            'performance',
-          ].filter(feature => typeof app[feature] === 'function');
-          loadEl.textContent = `Firebase SDK loaded with ${features.join(', ')}`;
-        } catch (e) {
-          console.error(e);
-          loadEl.textContent = 'Error loading the Firebase SDK, check the console.';
-        }
-      });
-    </script>
-  </body>
+<footer>
+    <div><h5>DANLHEE V.2</h5></div>
+</footer>    
+</body>
 </html>
