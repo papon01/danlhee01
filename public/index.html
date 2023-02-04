@@ -254,20 +254,25 @@ gapi.load("auth2", function() {
         client_id: "837943993291-o300pkv2ao8b5d2a8emoaji054euqcpv.apps.googleusercontent.com",
         scope: "profile email https://www.googleapis.com/auth/youtube.force-ssl https://www.googleapis.com/auth/youtubepartner"
     });
+
+        // Function to display user's profile information
+    function display() {
+        gapi.auth2.getAuthInstance().signIn().then(function() {
+            var profile = gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile();
+            document.getElementById("dhcontentlabel").innerHTML = "User ID: " + profile.getId();
+            document.getElementById("dhcontent").innerHTML = "Full Name: " + profile.getName() + "<br>" + "Email: " + profile.getEmail();
+            document.getElementById("profilepiclabel").innerHTML = "Profile Picture";
+            document.getElementById("profilepic").innerHTML = "<img src='" + profile.getImageUrl() + "'>";
+            document.getElementById("congradmassage").innerHTML = "Login Successful!";
+            document.getElementById("headM").innerHTML = z;
+        });
+    }
+    
+
+
 });
 
-// Function to display user's profile information
-function display() {
-    gapi.auth2.getAuthInstance().signIn().then(function() {
-        var profile = gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile();
-        document.getElementById("dhcontentlabel").innerHTML = "User ID: " + profile.getId();
-        document.getElementById("dhcontent").innerHTML = "Full Name: " + profile.getName() + "<br>" + "Email: " + profile.getEmail();
-        document.getElementById("profilepiclabel").innerHTML = "Profile Picture";
-        document.getElementById("profilepic").innerHTML = "<img src='" + profile.getImageUrl() + "'>";
-        document.getElementById("congradmassage").innerHTML = "Login Successful!";
-        document.getElementById("headM").innerHTML = z;
-    });
-}
+
 
 
 
