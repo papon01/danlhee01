@@ -1,4 +1,4 @@
-
+/* DELETE THIS
 
     // days_between function var
 
@@ -120,7 +120,9 @@ function WT()
       /*if (distance < 0) {
         clearInterval(x);
         document.getElementById("demo").innerHTML = "EXPIRED";*/
-}
+// } 
+
+
  
  
 
@@ -131,7 +133,7 @@ function WT()
 
 
 
-
+/* delete this
 
 
 function display(password){
@@ -169,3 +171,4 @@ function display(password){
     }
 
 }
+*/
