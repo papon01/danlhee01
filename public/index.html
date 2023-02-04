@@ -118,7 +118,7 @@
     <script>
         
 
-    // days_between function var
+    // days_between function 
 
 
 function days_between(date1, date2) {
@@ -229,21 +229,55 @@ function WT() {
 */
 
 var z = [" "+ years + "Years"+" "+ months + "Months"+" "+ days + "days"+" "+ hours + "hours"+" "+ minutes + "minutes"+" "+ seconds + "seconds"+" "].join(' | ');
-   console.log(z)
-   document.getElementById("headM").innerHTML = z
+   console.log(WT())
+   document.getElementById("headM").innerHTML = WT()
 return z
  
 }
 
 
 // Google OAuth2.0 authorization
-gapi.load("auth2", function() {
-    gapi.auth2.init({
-        client_id: "837943993291-o300pkv2ao8b5d2a8emoaji054euqcpv.apps.googleusercontent.com",
-        scope: "profile email https://www.googleapis.com/auth/youtube.force-ssl https://www.googleapis.com/auth/youtubepartner"
-    });
-});
+function signInOut() {
+    gapi.load('auth2', function() {
+      gapi.auth2.init({
+        client_id: '837943993291-ekpnlh3hu05qj7gbc8i1vprs1j4qiofn.apps.googleusercontent.com',
+        scope: 'https://www.googleapis.com/auth/plus.login'
+      });
+  
+      var auth2 = gapi.auth2.getAuthInstance();
+      if (auth2.isSignedIn.get()) {
+        auth2.signOut().then(function () {
+          console.log('User signed out.');
+          document.getElementById('signInOutButton').innerHTML = 'Sign In';
+          document.getElementById('signInOutButton').onclick = signIn;
+        });
+      } else {
+        auth2.signIn().then(function () {
+          console.log('User signed in.');
+          document.getElementById('signInOutButton').innerHTML = 'Sign Out';
+          document.getElementById('signInOutButton').onclick = signOut;
+        });
+        
+        //copy paste
+        // Function to display user's profile information
+        gapi.auth2.getAuthInstance().signIn().then(function() {
+            var profile = gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile();
+            document.getElementById("dhcontentlabel").innerHTML = "User ID: " + profile.getId();
+            document.getElementById("dhcontent").innerHTML = "Full Name: " + profile.getName() + "<br>" + "Email: " + profile.getEmail();
+            document.getElementById("profilepiclabel").innerHTML = "Profile Picture";
+            document.getElementById("profilepic").innerHTML = "<img src='" + profile.getImageUrl() + "'>";
+            document.getElementById("congradmassage").innerHTML = "Login Successful!";
+            document.getElementById("headM").innerHTML = z;
+        }).catch(function(error) {
+            console.error(error);
+            document.getElementById("congradmassage").innerHTML = "Login failed: " + error;
+        });
 
+      }
+    });
+  }
+  
+/*
 // Function to display user's profile information
 function display() {
     gapi.auth2.getAuthInstance().signIn().then(function() {
@@ -260,7 +294,7 @@ function display() {
     });
 }
 
-
+*/
 
 
 // Function to display the first 5 videos from a user's YouTube channel
