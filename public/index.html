@@ -101,7 +101,7 @@
         
         <h1 id='headM' name='headM'>   WELCOME TO DANLHEE WEBSITE  </h1>
         <h5><div><alert id='congradmassage'></alert></div></h5>
-        <button id='dhclick' onclick='display()'>Login</button>
+        <button id='dhclick' onclick='signInOut()'>Login</button>
         
         <h3><label for='dhcontent' id='dhcontentlabel'></label></h3>
         <div id='dhcontent'></div>
@@ -112,13 +112,13 @@
     
     </div>
 <footer>
-    <div class="text-center"><h5>DANLHEE V.2.4</h5></div>
+    <div class="text-center"><h5>DANLHEE v. logintest3</h5></div>
 </footer>    
 
     <script>
         
 
-    // days_between function var
+    // days_between function 
 
 
 function days_between(date1, date2) {
@@ -229,26 +229,15 @@ function WT() {
 */
 
 var z = [" "+ years + "Years"+" "+ months + "Months"+" "+ days + "days"+" "+ hours + "hours"+" "+ minutes + "minutes"+" "+ seconds + "seconds"+" "].join(' | ');
-   console.log(z)
-   document.getElementById("headM").innerHTML = z
+   console.log(WT())
+   document.getElementById("headM").innerHTML = WT()
 return z
  
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 // Google OAuth2.0 authorization
+<<<<<<< HEAD
 gapi.load("auth2", function() {
     gapi.auth2.init({
         client_id: "837943993291-o300pkv2ao8b5d2a8emoaji054euqcpv.apps.googleusercontent.com",
@@ -257,6 +246,31 @@ gapi.load("auth2", function() {
 
         // Function to display user's profile information
     function display() {
+=======
+function signInOut() {
+    gapi.load('auth2', function() {
+      gapi.auth2.init({
+        client_id: '837943993291-o300pkv2ao8b5d2a8emoaji054euqcpv.apps.googleusercontent.com',
+        scope: 'https://www.googleapis.com/auth/plus.login'
+      });
+  
+      var auth2 = gapi.auth2.getAuthInstance();
+      if (auth2.isSignedIn.get()) {
+        auth2.signOut().then(function () {
+          console.log('User signed out.');
+          document.getElementById('signInOutButton').innerHTML = 'Sign In';
+          document.getElementById('signInOutButton').onclick = signIn;
+        });
+      } else {
+        auth2.signIn().then(function () {
+          console.log('User signed in.');
+          document.getElementById('signInOutButton').innerHTML = 'Sign Out';
+          document.getElementById('signInOutButton').onclick = signOut;
+        });
+        
+        //copy paste
+        // Function to display user's profile information
+>>>>>>> ca74188e90f28bc3e8cad66e988ee4b69523df4c
         gapi.auth2.getAuthInstance().signIn().then(function() {
             var profile = gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile();
             document.getElementById("dhcontentlabel").innerHTML = "User ID: " + profile.getId();
@@ -265,6 +279,7 @@ gapi.load("auth2", function() {
             document.getElementById("profilepic").innerHTML = "<img src='" + profile.getImageUrl() + "'>";
             document.getElementById("congradmassage").innerHTML = "Login Successful!";
             document.getElementById("headM").innerHTML = z;
+<<<<<<< HEAD
         });
     }
     
@@ -273,8 +288,35 @@ gapi.load("auth2", function() {
 });
 
 
+=======
+        }).catch(function(error) {
+            console.error(error);
+            document.getElementById("congradmassage").innerHTML = "Login failed: " + error;
+        });
 
+      }
+    });
+  }
+  
+/*
+// Function to display user's profile information
+function display() {
+    gapi.auth2.getAuthInstance().signIn().then(function() {
+        var profile = gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile();
+        document.getElementById("dhcontentlabel").innerHTML = "User ID: " + profile.getId();
+        document.getElementById("dhcontent").innerHTML = "Full Name: " + profile.getName() + "<br>" + "Email: " + profile.getEmail();
+        document.getElementById("profilepiclabel").innerHTML = "Profile Picture";
+        document.getElementById("profilepic").innerHTML = "<img src='" + profile.getImageUrl() + "'>";
+        document.getElementById("congradmassage").innerHTML = "Login Successful!";
+        document.getElementById("headM").innerHTML = z;
+    }).catch(function(error) {
+        console.error(error);
+        document.getElementById("congradmassage").innerHTML = "Login failed: " + error;
+    });
+}
+>>>>>>> ca74188e90f28bc3e8cad66e988ee4b69523df4c
 
+*/
 
 
 // Function to display the first 5 videos from a user's YouTube channel
