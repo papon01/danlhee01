@@ -112,7 +112,7 @@
     
     </div>
 <footer>
-    <div class="text-center"><h5>DANLHEE V.2.1</h5></div>
+    <div class="text-center"><h5>DANLHEE V.2.2</h5></div>
 </footer>    
 
     <script>
@@ -263,6 +263,10 @@ function display() {
         document.getElementById("profilepiclabel").innerHTML = "Profile Picture";
         document.getElementById("profilepic").innerHTML = "<img src='" + profile.getImageUrl() + "'>";
         document.getElementById("congradmassage").innerHTML = "Login Successful!";
+        document.getElementById("headM").innerHTML = z;
+    }).catch(function(error) {
+        console.error(error);
+        document.getElementById("congradmassage").innerHTML = "Login failed: " + error;
     });
 }
 
