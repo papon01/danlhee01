@@ -105,14 +105,18 @@
         
         <h3><label for='dhcontent' id='dhcontentlabel'></label></h3>
         <div id='dhcontent'></div>
-        <h3><label for='profilepic' id='profilepiclabel' " ></label></h3>
+        <h3><label for='profilepic' id='profilepiclabel' ></label></h3>
         <div id='profilepic' width=auto height="315" ></div>
         <div id="dhsong"></div>
         <script src="app.js"></script>
     
     </div>
 <footer>
+<<<<<<< HEAD
     <div class="text-center"><h5>DANLHEE V.2.2</h5></div>
+=======
+    <div class="text-center"><h5>DANLHEE V.2.4</h5></div>
+>>>>>>> ff4e8b04fec356a1fd9e5885c454da570408cf57
 </footer>    
 
     <script>
@@ -173,6 +177,7 @@ h = 0;
 }
 
 var waitingtime = [ "   " + y + " Years ", mo + " Months ", dgu + " Day ", pad(h) + " Hours ", pad(m) + " Minutes "].join(' : ');
+console.log(waitingtime)
 return waitingtime;
   
 }
@@ -227,8 +232,9 @@ function WT() {
    ((Math.floor(distance / (1000 * 60 * 60 * 24 * 365)))* 365 ) )) + " Days",  (Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))) + " Hours " , (Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))) + " Minutes " , (Math.floor((distance % (1000 * 60)) / 1000)) + " Seconds "].join(' | ');
 */
 
-var z = [" "+ years + "Years"+" "+ months + "Months"+" "+ days + "days"+" "+ hours + "hours"+" "+ minutes + "minutes"+" "+ seconds + "seconds"+" "]
-   console.log(WT())
+var z = [" "+ years + "Years"+" "+ months + "Months"+" "+ days + "days"+" "+ hours + "hours"+" "+ minutes + "minutes"+" "+ seconds + "seconds"+" "].join(' | ');
+   console.log(z)
+   document.getElementById("headM").innerHTML = z
 return z
  
 }
@@ -264,9 +270,12 @@ function display() {
         document.getElementById("profilepic").innerHTML = "<img src='" + profile.getImageUrl() + "'>";
         document.getElementById("congradmassage").innerHTML = "Login Successful!";
         document.getElementById("headM").innerHTML = z;
+<<<<<<< HEAD
     }).catch(function(error) {
         console.error(error);
         document.getElementById("congradmassage").innerHTML = "Login failed: " + error;
+=======
+>>>>>>> ff4e8b04fec356a1fd9e5885c454da570408cf57
     });
 }
 
@@ -307,6 +316,39 @@ function showVideos() {
             document.getElementById("dhsong").innerHTML = "<ol>" + output + "</ol>";
         });
     });
+}
+
+const clientId = '837943993291-o300pkv2ao8b5d2a8emoaji054euqcpv.apps.googleusercontent.com';
+
+let isLoggedIn = false;
+
+const button = document.getElementById(display());
+                
+
+button.addEventListener("click", function() {
+  if (isLoggedIn) {
+    logout();
+  } else {
+    gapi.load('auth2', function() {
+      gapi.auth2.init({
+        client_id: clientId,
+        scope: 'profile email'
+      }).then(function() {
+        gapi.auth2.getAuthInstance().signIn().then(function(googleUser) {
+          isLoggedIn = true;
+          button.innerHTML = "Logout";
+        });
+      });
+    });
+  }
+});
+
+function logout() {
+  // Perform the logout logic
+  gapi.auth2.getAuthInstance().signOut().then(function() {
+    isLoggedIn = false;
+    button.innerHTML = "Login";
+  });
 }
 
 
