@@ -1,4 +1,4 @@
-/* DELETE THIS
+
 
     // days_between function var
 
@@ -123,8 +123,8 @@ function WT()
 // } 
 
 
+      }
  
- 
 
 
 
@@ -133,9 +133,10 @@ function WT()
 
 
 
-/* delete this
 
 
+
+/* 
 function display(password){
     var ans = prompt("Mint's Codename")
     if(ans == "tsws118"){
@@ -171,4 +172,6 @@ function display(password){
     }
 
 }
+ 
+
 */
