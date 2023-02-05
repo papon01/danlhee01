@@ -112,7 +112,7 @@
     
     </div>
 <footer>
-    <div class="text-center"><h5>DANLHEE v. logintest3</h5></div>
+    <div class="text-center"><h5>DANLHEE v. logintest 5</h5></div>
 </footer>    
 
     <script>
@@ -237,16 +237,6 @@ return z
 
 
 // Google OAuth2.0 authorization
-<<<<<<< HEAD
-gapi.load("auth2", function() {
-    gapi.auth2.init({
-        client_id: "837943993291-o300pkv2ao8b5d2a8emoaji054euqcpv.apps.googleusercontent.com",
-        scope: "profile email https://www.googleapis.com/auth/youtube.force-ssl https://www.googleapis.com/auth/youtubepartner"
-    });
-
-        // Function to display user's profile information
-    function display() {
-=======
 function signInOut() {
     gapi.load('auth2', function() {
       gapi.auth2.init({
@@ -270,25 +260,25 @@ function signInOut() {
         
         //copy paste
         // Function to display user's profile information
->>>>>>> ca74188e90f28bc3e8cad66e988ee4b69523df4c
         gapi.auth2.getAuthInstance().signIn().then(function() {
             var profile = gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile();
             document.getElementById("dhcontentlabel").innerHTML = "User ID: " + profile.getId();
+            console.log("User ID: " + profile.getId());
+
             document.getElementById("dhcontent").innerHTML = "Full Name: " + profile.getName() + "<br>" + "Email: " + profile.getEmail();
+            console.log("Full Name: " + profile.getName() + "<br>" + "Email: " + profile.getEmail());
+
             document.getElementById("profilepiclabel").innerHTML = "Profile Picture";
+            console.log("Profile Picture");
+
             document.getElementById("profilepic").innerHTML = "<img src='" + profile.getImageUrl() + "'>";
+            console.log("<img src='" + profile.getImageUrl() + "'>");
+
             document.getElementById("congradmassage").innerHTML = "Login Successful!";
+            console.log("Login Successful!");
+
             document.getElementById("headM").innerHTML = z;
-<<<<<<< HEAD
-        });
-    }
-    
-
-
-});
-
-
-=======
+            console.log(z);
         }).catch(function(error) {
             console.error(error);
             document.getElementById("congradmassage").innerHTML = "Login failed: " + error;
@@ -314,7 +304,6 @@ function display() {
         document.getElementById("congradmassage").innerHTML = "Login failed: " + error;
     });
 }
->>>>>>> ca74188e90f28bc3e8cad66e988ee4b69523df4c
 
 */
 
@@ -355,7 +344,7 @@ function showVideos() {
     });
 }
 
-const clientId = '837943993291-o300pkv2ao8b5d2a8emoaji054euqcpv.apps.googleusercontent.com';
+/* const clientId = '837943993291-o300pkv2ao8b5d2a8emoaji054euqcpv.apps.googleusercontent.com';
 
 let isLoggedIn = false;
 
@@ -387,8 +376,7 @@ function logout() {
     button.innerHTML = "Login";
   });
 }
-
-
+*/
 
     </script>
 </body>
