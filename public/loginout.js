@@ -1,100 +1,84 @@
-// Google OAuth2.0 authorization
-function signInOut() {
-    gapi.load('auth2', function() {
-      gapi.auth2.init({
-        client_id: '837943993291-o300pkv2ao8b5d2a8emoaji054euqcpv.apps.googleusercontent.com',
-        scope: 'https://www.googleapis.com/auth/plus.login'
-      });
-  
-      var auth2 = gapi.auth2.getAuthInstance();
-      if (auth2.isSignedIn.get()) {
-        auth2.signOut().then(function () {
-          console.log('User signed out.');
-          document.getElementById('signInOutButton').innerHTML = 'Sign In';
-          document.getElementById('signInOutButton').onclick = signIn;
-        });
-      } else {
-        auth2.signIn().then(function () {
-          console.log('User signed in.');
-          document.getElementById('signInOutButton').innerHTML = 'Sign Out';
-          document.getElementById('signInOutButton').onclick = signOut;
-        });
-        
-        //copy paste
-        // Function to display user's profile information
-            gapi.auth2.getAuthInstance().signIn().then(function() {
-                var profile = gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile();
-                document.getElementById("dhcontentlabel").innerHTML = "User ID: " + profile.getId();
-                document.getElementById("dhcontent").innerHTML = "Full Name: " + profile.getName() + "<br>" + "Email: " + profile.getEmail();
-                document.getElementById("profilepiclabel").innerHTML = "Profile Picture";
-                document.getElementById("profilepic").innerHTML = "<img src='" + profile.getImageUrl() + "'>";
-                document.getElementById("congradmassage").innerHTML = "Login Successful!";
-                document.getElementById("headM").innerHTML = z;
-                }).catch(function(error) {
-                    console.error(error);
-                    document.getElementById("congradmassage").innerHTML = "Login failed: " + error;
-                });
+var YOUR_CLIENT_ID = '837943993291-o300pkv2ao8b5d2a8emoaji054euqcpv.apps.googleusercontent.com';
+var YOUR_REDIRECT_URI = 'https://danlhee.web.app';
+var fragmentString = location.hash.substring(1);
 
-        }
-    });
+// Parse query string to see if page request is coming from OAuth 2.0 server.
+var params = {};
+var regex = /([^&=]+)=([^&]*)/g, m;
+while (m = regex.exec(fragmentString)) {
+  params[decodeURIComponent(m[1])] = decodeURIComponent(m[2]);
+}
+if (Object.keys(params).length > 0) {
+  localStorage.setItem('oauth2-test-params', JSON.stringify(params) );
+  if (params['state'] && params['state'] == 'login_S') {
+    simpleLogin();
   }
-  
+}
+
+// If there's an access token, try an API request.
+// Otherwise, start OAuth 2.0 flow.
+function simpleLogin() {
+  var params = JSON.parse(localStorage.getItem('oauth2-test-params'));
+  if (params && params['access_token']) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET',
+        'https://www.googleapis.com/drive/v3/about?fields=user&' +
+        'access_token=' + params['access_token']);
+    xhr.onreadystatechange = function (e) {
+      if (xhr.readyState === 4 && xhr.status === 200) {
+        console.log(xhr.response);
+
+        //add section by papon
+
+        document.getElementById(simpleLogin()).innerHTML = 'Logout';
+        document.getElementById(simpleLogin()).onclick = oauth2SignIn();
+        document.getElementById('headM').onload = WT();
+
+
+
+
+
+      } else if (xhr.readyState === 4 && xhr.status === 401) {
+        // Token invalid, so prompt for user permission.
+        oauth2SignIn();
+      }
+    };
+    xhr.send(null);
+  } else {
+    oauth2SignIn();
+  }
+}
+
 /*
-// Function to display user's profile information
-function display() {
-    gapi.auth2.getAuthInstance().signIn().then(function() {
-        var profile = gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile();
-        document.getElementById("dhcontentlabel").innerHTML = "User ID: " + profile.getId();
-        document.getElementById("dhcontent").innerHTML = "Full Name: " + profile.getName() + "<br>" + "Email: " + profile.getEmail();
-        document.getElementById("profilepiclabel").innerHTML = "Profile Picture";
-        document.getElementById("profilepic").innerHTML = "<img src='" + profile.getImageUrl() + "'>";
-        document.getElementById("congradmassage").innerHTML = "Login Successful!";
-        document.getElementById("headM").innerHTML = z;
-    }).catch(function(error) {
-        console.error(error);
-        document.getElementById("congradmassage").innerHTML = "Login failed: " + error;
-    });
+ * Create form to request access token from Google's OAuth 2.0 server.
+ */
+function oauth2SignIn() {
+  // Google's OAuth 2.0 endpoint for requesting an access token
+  var oauth2Endpoint = 'https://accounts.google.com/o/oauth2/v2/auth';
+
+  // Create element to open OAuth 2.0 endpoint in new window.
+  var form = document.createElement('form');
+  form.setAttribute('method', 'GET'); // Send as a GET request.
+  form.setAttribute('action', oauth2Endpoint);
+
+  // Parameters to pass to OAuth 2.0 endpoint.
+  var params = {'client_id': YOUR_CLIENT_ID,
+                'redirect_uri': YOUR_REDIRECT_URI,
+                'scope': 'https://www.googleapis.com/auth/drive.metadata.readonly',
+                'state': 'login_S',
+                'include_granted_scopes': 'true',
+                'response_type': 'token'};
+
+  // Add form parameters as hidden input values.
+  for (var p in params) {
+    var input = document.createElement('input');
+    input.setAttribute('type', 'hidden');
+    input.setAttribute('name', p);
+    input.setAttribute('value', params[p]);
+    form.appendChild(input);
+  }
+
+  // Add form to page and submit it to open the OAuth 2.0 endpoint.
+  document.body.appendChild(form);
+  form.submit();
 }
-
-*/
-
-
-// Function to display the first 5 videos from a user's YouTube channel
-function showVideos() {
-    gapi.client.init({
-        'apiKey': 'AIzaSyBDEXKsKG1mjccq56dkXYGJwS5EwgosANQ',
-        'discoveryDocs': ['https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest'],
-    }).then(function() {
-        return gapi.client.youtube.channels.list({
-            "part": "snippet,contentDetails,statistics",
-            "mine": true
-        });
-    }).then(function(response) {
-        console.log(response);
-        var channel = response.result.items[0];
-        console.log(channel);
-        var channelId = channel.id;
-        console.log(channelId);
-
-        gapi.client.youtube.search.list({
-            "part": "snippet",
-            "channelId": channelId,
-            "maxResults": 5,
-            "type": "video"
-        }).then(function(response) {
-            console.log(response);
-            var videos = response.result.items;
-            var output = "";
-            for (var i in videos) {
-                var title = videos[i].snippet.title;
-                var videoId = videos[i].id.videoId;
-                output += "<li><a href='https://www.youtube.com/watch?v=" + videoId + "'>" + title + "</a></li>";
-            }
-            document.getElementById("dhsong").innerHTML = "<ol>" + output + "</ol>";
-        });
-    });
-}
-
-const clientId = '837943993291-o300pkv2ao8b5d2a8emoaji054euqcpv.apps.googleusercontent.com';
-
-
