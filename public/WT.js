@@ -111,7 +111,7 @@
         
         var z = [" "+ years + "Years"+" "+ months + "Months"+" "+ days + "days"+" "+ hours + "hours"+" "+ minutes + "minutes"+" "+ seconds + "seconds"+" "].join(' | ');
            
-           document.getElementById("headM").innerHTML = z
+          // document.getElementById("headM").innerHTML = z
 
         return z
          
