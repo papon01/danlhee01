@@ -1,61 +1,108 @@
 <!DOCTYPE html>
 <html>
-<head> 
+  <head>
+      
     <title>DANLHEE WEB SITE</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rajdhani">
+    <meta charset="utf-8">
+    
+    <!--meta smart phone device-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!--google font-->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+    
+    <!--bootstrap.css-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    
+    <!--google authorization-->
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta name="google-signin-client_id" content="837943993291-vohhmhiantkckkdfqhrvr2fp0hrofj70.apps.googleusercontent.com">
+    <!--OAlth : 837943993291-vohhmhiantkckkdfqhrvr2fp0hrofj70.apps.googleusercontent.com-->
 
-        <!-- Link to Bootstrap CSS file -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-
-        <!-- Link to Bootstrap JavaScript file (jQuery and Popper.js are also required) -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
-        <!-- Link to Google OAuth2.0 API file -->
-    <script src="https://apis.google.com/js/api.js"></script>
-
-        <!-- Link to Bootstrap 5 CSS file -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-
-        <!-- Optional link to Bootstrap 5 JavaScript file -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
-
-
-        <!-- CSS Link-->
+    <!-- CSS Link-->
     <link rel="stylesheet" href="style.css">
-
-
-
+    <link rel="stylesheet" href="WT1.css">
 
     
-    
-</head>
-<body>
- 
-        <iframe id="background" src="bg.html"></iframe>  
 
-    <div class="container text-center">
     
-        
-        <h1 id='headM' name='headM' ><a > WELCOME TO DANLHEE WEBSITE</a></h1>
-        <h5><div><alert id='congradmassage'></alert></div></h5>
-        <button id='dhclick' onclick='simpleLogin()'>Login</button>
-        
-        <h3><label for='dhcontent' id='dhcontentlabel'></label></h3>
-        <div id='dhcontent'></div>
-        <h3><label for='profilepic' id='profilepiclabel' ></label></h3>
-        <div id='profilepic' width=auto height="315" ></div>
-        <div id="dhsong"></div>
-        <script src="app.js"></script>
+
+    
+
+  </head>    
+
+  <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>                        
+          </button>
+          <a class="navbar-brand" href="#"><img id="logo" src="Screenshot 2023-02-05 122656.png" alt="logo">
+            <strong style="letter-spacing: 0.05em;margin-top:10px ;margin-left:5px;">DANLHEE</strong></a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar" >
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>            
+            <li><a href="#">About</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+          
+          <ul class="nav navbar-nav navbar-right">
+            
+            <li class="dropdown-toggle">
+             
+              <a href="#" data-toggle="dropdown" style="padding:5px ;padding-left:15px ;" id="signIn">
+                <img src="Screenshot 2023-02-05 122656.png" alt="Profile_Pic" id="profilepic">
+                <span class="caret"></span>
+              </a>
+                
+             
+              <ul class="dropdown-menu">
+                <li><a href="#">Name Surname</a></li>
+                <li><a href="#">Email Account</a></li>
+                <li><a href="#">User Authority</a></li>
+                <li><a id="signOut" onclick="SignInOut()"><span style="margin-right: 8px;" class="glyphicon glyphicon-log-in"></span>Logout</a></li>
+              </ul>
+            </li>
+            
+            
+          </ul>
+        </div>
+      </div>
+    </nav>
     
     </div>
+
+    
+    <div> 
+
+      <div class="container-fluid text-center">
+        <div id="countdown" class="text-center">
+          <ul>
+            <li style="float: left;"><span id="days"></span>days</li>
+            <li style="float: left;"><span id="hours"></span>Hours</li>
+            <li style="float: left;"><span id="minutes"></span>Minutes</li>
+            <li style="float: left;"><span id="seconds"></span>Seconds</li>
+          </ul>
+        </div>
+     
+    </div>
 <footer>
-    <div class="text-center"><h5>DANLHEE v. logintest 7.4</h5></div>
+    <div class="text-center"><h5 onloadstart="WT()">DANLHEE TT.v.11.8</h5></div>
 </footer>    
 
 
 <script src="loginout.js"></script>
 <script src="WT.js"></script>
+<script src="WT1.js"></script>
 </body>
 </html>
